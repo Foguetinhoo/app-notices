@@ -1,12 +1,15 @@
-const verifyNullOrUndefined = (object = []) => {
-    for (const property in object) {
-        if (object.hasOwnProperty.call(object, property)) {
+'use strict'
+const verifyNullOrUndefined = object => { 
+    let cont = 0
+    if (Object.keys(object).length === 0) return false;
+    for(const property in object) {
+        if (object.hasOwnProperty(object)) {
             const data = object[property];
-            if (data === null) return false;
-        }
-        return false;
+            if (data === null || data === undefined) cont++   
+        } 
     }
-    return true;
+    if (cont > 0) return false;
+    return true
 }
 
-module.exports = { verifyNullOrUndefined }
+export { verifyNullOrUndefined }

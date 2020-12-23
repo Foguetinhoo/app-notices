@@ -1,21 +1,26 @@
-const { verifyNullOrUndefined } = require("./validData")
-const verifyBody =  body => {
+import { verifyNullOrUndefined } from "./validData"
+const verifyBody = body => {
     try {
-        if (typeof Object.entries(body) != 'object') return {
+    
+        if (typeof body != 'object') return {
             type: 'error',
             message: 'Corpo de requição invalido'
         }
-        if (Object.entries(body).length == 0) return {
+
+        if (body.length == 0) return {
             type: 'error',
             message: 'Corpo de requição vazio'
         }
-        const result = verifyNullOrUndefined(Object.entries(body))
+        const result = verifyNullOrUndefined(body)
 
         if (!result) return {
             type: 'error',
             message: 'campos invalidos'
         }
-        return true;
+        return {
+            type: "success",
+            message:"ok"
+        };
     } catch (err) {
         console.log(err)
         return res.json({
