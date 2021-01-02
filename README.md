@@ -1,5 +1,5 @@
 <h1 align="center">
-App Notices
+Web Notices
 </h1>
 <p align="center">Uma pequena aplicação para realizar criação e edição de noticias, para fins educativos</p>
 
@@ -10,5 +10,5 @@ App Notices
 </p>
 
 <p align="center">
- <img src="./imagesapp/Login.png"/>
+
 </p>
