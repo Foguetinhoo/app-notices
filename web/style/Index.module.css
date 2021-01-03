@@ -19,8 +19,6 @@
 }
 
 .social {
-    /* background-image:url("../public/images/learning2.png") ;
-   background-attachment: no-repeat center; */
     flex: 1.4;
 }
 
@@ -29,8 +27,6 @@
     height: 100%;
     cursor: none;
 }
-
-.social>img {}
 
 .form {
     padding: 1.5em;
@@ -46,14 +42,14 @@
     align-items: center;
     width: 100%;
     margin-top: 20px;
-    padding: 5px 15px;
-    font-family: 'Advent Pro',
-        sans-serif;
+    padding: 8px 15px;
+    font-family: 'Advent Pro',sans-serif;
     font-weight: 700;
-    font-size: 19px;
-    /* border: 1px solid #dbdae4ca; */
-    border: #ff6584;
+    font-size: 20px;
+    border:#ff6584;
     color: white;
+    cursor: pointer;
+    outline: none;
 
 
     background-color: #ff6584;
@@ -64,7 +60,12 @@
     /* box-shadow: 0 3px 5px rgb(26, 25, 25); */
     opacity: .8;
 }
+.submit:disabled {
+    cursor: not-allowed;
+    /* background-color: #818181cc; */
+  opacity: .650;
 
+}
 .input {
     border: 0;
     outline: none;
@@ -117,12 +118,18 @@
     transition: all .3s ease-in;
     color: #dbdae4ca;
 }
-@media screen and (max-width:600px) {
+
+@media screen and (max-width:480px) {
     .main {
         flex-direction: column;
+  
     }
 
     .social {
-        /* display: none; */
+       flex: auto;
+
+    }
+    .login{
+        flex: 2;
     }
 }
