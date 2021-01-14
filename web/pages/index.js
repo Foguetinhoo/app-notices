@@ -21,7 +21,6 @@ export default function Index({ isConnected }) {
   useEffect(() => {
     setChangeType(true)
     emailRef.current.focus()
-
   }, [])
 
   const handleChangeIcon = () => {
@@ -142,5 +141,6 @@ export async function getServerSideProps(context) {
 
   return {
     props: { isConnected },
+
   }
 }

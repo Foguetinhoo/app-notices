@@ -8,6 +8,7 @@
     margin: 20px 80px;
     box-shadow: 0 0 6px 5px #c2c2c7ca;
     color: white;
+      user-select: none;
 
 
 }
@@ -91,20 +92,23 @@
     cursor: pointer;
     outline: none;
     background-color: #635ce9ca;
+      
 }
 
 .submit:hover {
     transition: all .4s ease-in;
     /* box-shadow: 0 3px 5px rgb(26, 25, 25); */
     opacity: .8;
+
 }
 
 .submit:disabled {
     cursor: not-allowed;
     /* background-color: #818181cc; */
-    opacity: .650;
+    opacity: .9;
 
 }
+
 .return {
     z-index: 1000;
     width: 80px;

@@ -69,7 +69,7 @@ function Register() {
                     placeholder="Nome Completo"
                     className={stylePage.input}
                     value={name}
-                    onChange={e => setName(e.target.value.trim())}
+                    onChange={e => setName(e.target.value.trimStart())}
                     maxLength={30}
                     ref={nameRef}
                   />
