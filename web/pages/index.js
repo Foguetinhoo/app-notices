@@ -68,16 +68,21 @@ export default function Index({ isConnected }) {
                   <div className={stylesIn.social}>
                     <img src="/images/learning.svg" className={stylesIn.imageBack} />
                   </div>
-
                   <div className={stylesIn.login}>
                     <div className={stylesIn.logo}>
-                      <p className={stylesIn.title}>Web Notices <FontAwesomeIcon icon={faNewspaper} style={{ width: 65, marginLeft: 4 }} /> </p>
+                      <p className={stylesIn.title}>Web Notices
+                        <FontAwesomeIcon
+                          icon={faNewspaper}
+                          style={{ width: 65, marginLeft: 4 }}
+                        />
+                      </p>
                     </div>
                     <form className={stylesIn.form} onSubmit={handleSubmit}>
                       <div className={stylesIn.inputForm}>
                         <FontAwesomeIcon
                           icon={faEnvelope}
-                          className={stylesIn.iconFont} />
+                          className={stylesIn.iconFont}
+                        />
                         <input
                           type="email"
                           className={stylesIn.input}
@@ -87,10 +92,7 @@ export default function Index({ isConnected }) {
                           onChange={e => setEmail(e.target.value.trim())}
                           onInvalid={setValid}
                           ref={emailRef}
-
-
                         />
-
                       </div>
                       <div className={stylesIn.inputForm}>
                         <FontAwesomeIcon
@@ -106,7 +108,9 @@ export default function Index({ isConnected }) {
                           value={password}
                           onChange={e => setPassword(e.target.value.trim())}
                         />
-                        <a onClick={handleChangeIcon}>{changeIcon(changeType)}</a>
+                        <a onClick={handleChangeIcon}>
+                          {changeIcon(changeType)}
+                        </a>
                       </div>
                       <button
                         type="submit"
