@@ -1,0 +1,144 @@
+@import url(https://fonts.googleapis.com/css2?family=Advent+Pro:wght@100;200;300;400;500;600;700&display=swap);
+
+/* .body{
+        height: 100vh;
+       
+
+
+} */
+.page{
+    display: grid;
+    grid-template-columns:1fr 1.8fr;
+    gap: 0;
+    height: 95vh;
+    margin: 20px 80px;
+    box-shadow: 0 0 6px 5px #c2c2c7ca;
+    color: white;
+
+
+}
+.social{
+     background-color: #635ce9ca;
+     display: flex;
+     justify-content: center;
+} 
+
+.form{
+    font-family: 'Advent Pro',sans-serif;
+    font-weight: 700;
+    background: #ff6584d0;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+.form form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.title{
+    text-align: center;
+    font-size: 35px;
+}
+.exit{
+    animation:exit 0.8s both;
+}
+.inputForm {
+    display: flex;
+    flex-direction: row;
+    padding: 5px ;
+    width: 320px;
+    border-bottom: 1px solid rgba(253, 251, 251, 0.589);
+    /* border-radius: 5px; */
+    margin-bottom: 25px;
+}
+.iconFont {
+    width: 18px;
+}
+.input {
+    border: 0;
+    outline: none;
+    background: none;
+    padding: 0 5px;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    font-family: 'Fire Code';
+
+}
+
+.input::placeholder {
+    color: white;
+}
+.imageBack {
+    position: relative;
+    cursor: none;
+    margin-bottom: 50px;
+}
+.return,
+.submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Advent Pro', sans-serif;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 3px;
+    outline: none;
+}
+.submit {
+    width: 100%;
+    margin-top: 20px;
+    padding: 8px 15px;
+    border: #ff6584;
+    cursor: pointer;
+    outline: none;
+    background-color: #635ce9ca;
+}
+
+.submit:hover {
+    transition: all .4s ease-in;
+    /* box-shadow: 0 3px 5px rgb(26, 25, 25); */
+    opacity: .8;
+}
+
+.submit:disabled {
+    cursor: not-allowed;
+    /* background-color: #818181cc; */
+    opacity: .650;
+
+}
+.return {
+    z-index: 1000;
+    width: 80px;
+    height: 50px;
+    position: relative;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    top:20px;
+
+}
+.return:hover{
+    transition: all .4s ease-in;
+    background-color: #ff6584d0;
+}
+.slashPass{
+    margin-left: 50px;
+}
+@keyframes exit{
+     from {
+         -webkit-transform: translate3d(100%, 0, 0);
+         transform: translate3d(100%, 0, 0);
+         visibility: visible;
+     }
+
+     to {
+         -webkit-transform: translate3d(0, 0, 0);
+         transform: translate3d(0, 0, 0);
+     }
+}
+@media screen and (max-width:480px) {
+
+}

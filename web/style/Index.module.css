@@ -3,8 +3,11 @@
 
 .main {
     display: flex;
-    height: 100vh;
-    
+    justify-content: center;
+   height: 95vh;
+   margin: 20px 80px;
+    background: #e1e1e6ca;
+     box-shadow: 0 0 6px 5px #c2c2c7ca;
 }
 
 .login {
@@ -19,7 +22,7 @@
 }
 
 .social {
-    flex: 1.4;
+    flex: 1.5;
 }
 
 .imageBack {
@@ -32,9 +35,6 @@
     padding: 1.5em;
 }
 
-.img {
-    width: 100%;
-}
 
 .submit {
     display: flex;
@@ -50,8 +50,6 @@
     color: white;
     cursor: pointer;
     outline: none;
-
-
     background-color: #ff6584;
 }
 
@@ -86,7 +84,7 @@
     display: flex;
     flex-direction: row;
     padding: 5px 0;
-    width: 280px;
+    width: 300px;
     border-bottom: 1px solid rgb(255, 255, 255);
     margin-bottom: 25px;
 }
@@ -119,6 +117,21 @@
     color: #dbdae4ca;
 }
 
+.enter{
+    animation:enter 0.8s both;
+}
+@keyframes enter {
+   from {
+       -webkit-transform: translate3d(-100%, 0, 0);
+       transform: translate3d(-100%, 0, 0);
+       visibility: visible;
+   }
+
+   to {
+       -webkit-transform: translate3d(0, 0, 0);
+       transform: translate3d(0, 0, 0);
+   }
+}
 @media screen and (max-width:480px) {
     .main {
         flex-direction: column;

@@ -9,6 +9,9 @@ Web Notices
   <img src="https://img.shields.io/static/v1?label=Next.js&message=V10.0.3&color=2C8EBB&style=for-the-badge&logo=Next.js&labelColor=000000"/>
 </p>
 
-<p align="center">
+<p align="center"></p>
  <img src="./imagesapp/Login.png"/>
+</p>
+<p align="center">
+ <img src="./imagesapp/Register.png"/>
 </p>
