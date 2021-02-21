@@ -70,11 +70,11 @@ function Register() {
       });
 
       showToast(response.data)
+  
       const { type } = response.data
+
       if (type === 'success') {
-        setTimeout(() => {
-          Router.push('/')
-        }, 1500);
+        setTimeout(() => Router.push('/'), 1500);
       }
     } catch (err) {
       showToast({ type: 'error', message: err.message })

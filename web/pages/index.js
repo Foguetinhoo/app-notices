@@ -2,6 +2,8 @@
 import { useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+import Router from 'next/router'
+
 import { connectToDatabase } from '../util/mongodb'
 import { faKey, faEnvelope, faEye, faEyeSlash, faSignInAlt } from '@fortawesome/free-solid-svg-icons'
 import { faNewspaper } from '@fortawesome/free-regular-svg-icons'
@@ -13,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import stylesIn from '../style/Index.module.css'
 import axios from 'axios'
 import { setValid } from '../util/function/customSet'
+import { addDataLocalStorage } from '../util/function/localStorageSet'
 // import { Toast } from './components/Toast'
 
 export default function Index({ isConnected }) {
@@ -50,11 +53,21 @@ export default function Index({ isConnected }) {
   };
   const handleSubmit = async e => {
     e.preventDefault()
+  
     const response = await axios.post('/api/user/login', {
       email: email.trim(),
       password:password.trim()
     })
-    showToast(response.data)
+
+    const { type } = response.data
+    console.log(response.status)
+    if (type === 'error') {
+      showToast(response.data)
+      return;
+    }
+
+    // addDataLocalStorage('@user', response.data?.result);
+    // Router.push('/home')
   }
   const changeIcon = change => {
     if (change) return <FontAwesomeIcon
