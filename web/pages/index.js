@@ -6,10 +6,14 @@ import { connectToDatabase } from '../util/mongodb'
 import { faKey, faEnvelope, faEye, faEyeSlash, faSignInAlt } from '@fortawesome/free-solid-svg-icons'
 import { faNewspaper } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { SwitchTransition, CSSTransition, TransitionGroup } from "react-transition-group";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import * as uuid from 'uuid'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import stylesIn from '../style/Index.module.css'
 import axios from 'axios'
+import { setValid } from '../util/function/customSet'
+// import { Toast } from './components/Toast'
 
 export default function Index({ isConnected }) {
   const [changeType, setChangeType] = useState(false)
@@ -29,10 +33,28 @@ export default function Index({ isConnected }) {
     else passwordRef.current.type = 'password'
   }
 
+  const showToast = ({ type, message }) => {
+    switch (type) {
+      case 'success':
+        toast.success(message);
+        break;
+      case 'warn':
+        toast.warn(message);
+        break;
+      case 'error':
+        toast.error(message);
+        break;
+      default:
+        toast.info(message);
+    }
+  };
   const handleSubmit = async e => {
     e.preventDefault()
-    // const response = await axios.post('/api/user')
-    alert('os campos estão certinhos')
+    const response = await axios.post('/api/user/login', {
+      email: email.trim(),
+      password:password.trim()
+    })
+    showToast(response.data)
   }
   const changeIcon = change => {
     if (change) return <FontAwesomeIcon
@@ -44,9 +66,7 @@ export default function Index({ isConnected }) {
       className={stylesIn.iconType}
     />
   }
-  const setValid = e => {
-    e.target.setCustomValidity('informe um email válido')
-  }
+
 
   return (
     <>
@@ -55,14 +75,17 @@ export default function Index({ isConnected }) {
         <link rel="icon" href="/favicon.ico" />
 
       </Head>
+      
       {isConnected ?
 
         <div>
+          <ToastContainer />
           <TransitionGroup>
             <CSSTransition
               timeout={400}
             >
-              <div className={ stylesIn.enter}>
+              <div className={stylesIn.enter}>
+           
                 <main className={stylesIn.main}>
                   <div className={stylesIn.social}>
                     <img src="/images/learning.svg" className={stylesIn.imageBack} />
@@ -76,6 +99,7 @@ export default function Index({ isConnected }) {
                         />
                       </p>
                     </div>
+                    
                     <form className={stylesIn.form} onSubmit={handleSubmit}>
                       <div className={stylesIn.inputForm}>
                         <FontAwesomeIcon
@@ -125,11 +149,14 @@ export default function Index({ isConnected }) {
                     </form>
                   </div>
                 </main>
-            </div>
+          
+              </div>
+            
             </CSSTransition>
           </TransitionGroup>
         </div>
         : <h1>Error</h1>}
+  
     </>
   )
 }

@@ -1,15 +1,16 @@
 import { Find } from '../../../util/database/Find'
+import { hashPassword } from '../../../util/function/encryptPassword'
 import { verifyBody } from '../../../util/function/validBody'
 
 const login = async (req, res) => {
     try {
         const validation = verifyBody(req.body)
+    
 
         if (validation.type === 'error') return res.status(400).json(validation)
 
         const { email, password } = req.body
-        
-        if (!email || password) return res.status(200).json({
+        if (!email || !password) return res.status(200).json({
             type: 'error',
             message: 'campos vazios'
         })
@@ -19,7 +20,7 @@ const login = async (req, res) => {
         if (result === false) {
             return res.status(200).json({
                 type: 'error',
-                message: 'email não cadastrado no sistema'
+                message: 'email não cadastrado'
             })
         }
 
@@ -28,9 +29,10 @@ const login = async (req, res) => {
             result
         })
     } catch (err) {
+        console.log(err)
         return res.status(400).json({
             type: 'error',
-            message: err
+            message: err.message
         })
     }
 }

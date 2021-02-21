@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link'
 import Image from 'next/image'
+import Router from 'next/router'
 import stylePage from '../style/Register.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { faKey, faEnvelope, faEye, faEyeSlash, faSignInAlt, faArrowLeft, faUserAlt, faNewspaper, faCheck, faLocationArrow } from '@fortawesome/free-solid-svg-icons'
-
-
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
+import axios from 'axios'
+import { setValid } from '../util/function/customSet';
 
 function Register() {
   const [changeType, setChangeType] = useState(false)
@@ -18,10 +21,25 @@ function Register() {
   const nameRef = useRef(null)
   const passwordRef = useRef(null)
 
+  const showToast = ({ type, message }) => {
+    switch (type) {
+      case 'success':
+        toast.success(message);
+        break;
+      case 'warn':
+        toast.warn(message);
+        break;
+      case 'error':
+        toast.error(message);
+        break;
+      default:
+        toast.info(message);
+    }
+  };
+
   useEffect(() => {
     setChangeType(true)
     nameRef.current.focus()
-
   }, [])
 
   const handleChangeIcon = () => {
@@ -29,6 +47,7 @@ function Register() {
     if (changeType) passwordRef.current.type = 'text'
     else passwordRef.current.type = 'password'
   }
+
   const changeIcon = change => {
     if (change) return <FontAwesomeIcon
       icon={faEyeSlash}
@@ -39,7 +58,31 @@ function Register() {
       className={stylePage.slashPass}
     />
   }
-  return <div>
+
+  const handleSubmit = async  e => {
+    try {
+      e.preventDefault();
+      
+      const response = await axios.post('/api/user/create', {
+        name: name.trim(),
+        email: email.trim(),
+        password: password.trim()
+      });
+
+      showToast(response.data)
+      const { type } = response.data
+      if (type === 'success') {
+        setTimeout(() => {
+          Router.push('/')
+        }, 1500);
+      }
+    } catch (err) {
+      showToast({ type: 'error', message: err.message })
+    }
+    
+  }
+  return <div> 
+    <ToastContainer />
     <TransitionGroup>
       <CSSTransition
         timeout={400}
@@ -47,7 +90,7 @@ function Register() {
         <div className={stylePage.exit}>
           <div className={stylePage.page}>
             <div className={stylePage.form} >
-              <form>
+              <form onSubmit={handleSubmit}>   
                 <p className={stylePage.title}>Web Notices
                   <FontAwesomeIcon
                     icon={faNewspaper}
@@ -63,7 +106,8 @@ function Register() {
                 <div className={stylePage.inputForm}>
                   <FontAwesomeIcon
                     icon={faUserAlt}
-                    className={stylePage.iconFont} />
+                    className={stylePage.iconFont}
+                  />
                   <input
                     type="text"
                     placeholder="Nome Completo"
@@ -77,19 +121,22 @@ function Register() {
                 <div className={stylePage.inputForm}>
                   <FontAwesomeIcon
                     icon={faEnvelope}
-                    className={stylePage.iconFont} />
+                    className={stylePage.iconFont}
+                  />
                   <input
-                    type="text"
+                    type="email"
                     placeholder="Email"
                     className={stylePage.input}
                     value={email}
                     onChange={e => setEmail(e.target.value.trim())}
+                    onInvalid={setValid}
                   />
                 </div>
                 <div className={stylePage.inputForm}>
                   <FontAwesomeIcon
                     icon={faKey}
-                    className={stylePage.iconFont} />
+                    className={stylePage.iconFont}
+                  />
                   <input
                     type="password"
                     placeholder="Senha"
@@ -104,7 +151,6 @@ function Register() {
                   >
                     {changeIcon(changeType)}
                   </a>
-                  
                 </div>
                 <button
                   type="submit"
