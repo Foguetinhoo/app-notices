@@ -66,8 +66,8 @@ export default function Index({ isConnected }) {
       return;
     }
 
-    // addDataLocalStorage('@user', response.data?.result);
-    // Router.push('/home')
+    addDataLocalStorage('@user', response.data?.result);
+    Router.push('/home')
   }
   const changeIcon = change => {
     if (change) return <FontAwesomeIcon

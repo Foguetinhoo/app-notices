@@ -22,7 +22,7 @@ const login = async (req, res) => {
                 message: 'email não cadastrado'
             })
         }
-        if (!comparePassword(result.password, password)) {
+        if (comparePassword(result.password, password)) {
             result.password = undefined
             return res.status(200).json({
                 type: "success",
